@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx4j4wbf23nwk"]
+
+[ext_resource type="Script" path="res://Scripts/Pipes.gd" id="1_buveb"]
+[ext_resource type="Texture2D" uid="uid://cwlnwb6tr8vyj" path="res://Sprites/images (1).png" id="2_i45ok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae07c"]
+size = Vector2(72, 897)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f8d6"]
+size = Vector2(14, 256)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(576, 500)
+script = ExtResource("1_buveb")
+
+[node name="TopPipe" type="Sprite2D" parent="."]
+position = Vector2(0, -570)
+scale = Vector2(0.322222, 3.98333)
+texture = ExtResource("2_i45ok")
+
+[node name="BottomPipe" type="Sprite2D" parent="."]
+position = Vector2(0, 529)
+scale = Vector2(0.322222, 3.98333)
+texture = ExtResource("2_i45ok")
+
+[node name="UpperPipeCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -570.5)
+shape = SubResource("RectangleShape2D_ae07c")
+
+[node name="UpperPipeCollision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 529)
+shape = SubResource("RectangleShape2D_ae07c")
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="ScoreCounter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreCounter"]
+position = Vector2(-1, -23)
+shape = SubResource("RectangleShape2D_4f8d6")
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
